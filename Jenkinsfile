@@ -8,6 +8,9 @@ println "Only purpose is to show how to start a Pipeline in OCP"
 openshift.withCluster() {
     openshift.withProject() {
         
+        println "workspace ls -r "
+        sh "ls -r"
+        
         stage('Checkout Source') {
         checkout scm
         sh('git rev-parse --short HEAD > .git/commit-id')
