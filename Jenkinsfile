@@ -8,6 +8,12 @@ println "Only purpose is to show how to start a Pipeline in OCP"
 openshift.withCluster() {
     openshift.withProject() {
         
+        stage('Checkout Source') {
+        checkout scm
+        sh('git rev-parse --short HEAD > .git/commit-id')
+}
+        
+        
         def newVersion = getNewVersion{}
         println "The new version is ${newVersion} as a sha."
         
