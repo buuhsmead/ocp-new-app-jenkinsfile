@@ -11,15 +11,12 @@ openshift.withCluster() {
         println "workspace ls -r "
         sh "ls -r"
         
-        stage('Checkout Source') {
-        checkout scm
-        sh('git rev-parse --short HEAD > .git/commit-id')
-}
+//        stage('Checkout Source') {
+//            checkout scm
+//            sh('git rev-parse --short HEAD > .git/commit-id')
+//        }
         
-        
-        def newVersion = getNewVersion{}
-        println "The new version is ${newVersion} as a sha."
-        
+
           /** Selectors are a core concept in the DSL. They allow the user to invoke operations **/
     /** on group of objects which satisfy a given criteria. **/
 
@@ -41,4 +38,14 @@ openshift.withCluster() {
     echo "They are named: ${saSelector.names()}"
 
     }
+
+    def mysa = openshift.selector('serviceaccount','my-eap-account')
+    if (mysa.exists()) {
+        println "mysa does exists."
+    } else {
+        println "mysa is not available."
+    }
+
+
+
 }
