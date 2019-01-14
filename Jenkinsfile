@@ -53,5 +53,5 @@ openshift.withCluster() {
 
     }
     
- println "webhook secret adjusted"
+ println "webhook secret adjusted with reference to secret"
 }
