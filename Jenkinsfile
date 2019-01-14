@@ -7,14 +7,19 @@ println "Only purpose is to show how to start a Pipeline in OCP"
 
 openshift.withCluster() {
     openshift.withProject() {
+                
+        stage('Checkout Source') {
+            checkout scm
+            sh('git rev-parse --short HEAD > .git/commit-id')
+        }
         
-        println "workspace ls -r "
-        sh "ls -r"
+        stage('workspace-ls-r') {
+            println "workspace ls -r "
+            sh "ls -r"        
+        }
         
-//        stage('Checkout Source') {
-//            checkout scm
-//            sh('git rev-parse --short HEAD > .git/commit-id')
-//        }
+        
+        stage('display current service accounts') {
         
 
           /** Selectors are a core concept in the DSL. They allow the user to invoke operations **/
@@ -46,6 +51,7 @@ openshift.withCluster() {
         println "mysa is not available."
     }
 
-
+    }
+    
 
 }
