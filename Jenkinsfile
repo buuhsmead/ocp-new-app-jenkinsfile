@@ -8,7 +8,9 @@ println "Only purpose is to show how to start a Pipeline in OCP"
 openshift.withCluster() {
     openshift.withProject() {
         
-        println getProjectVersion{}
+        def newVersion = getNewVersion{}
+        println "The new version is ${newVersion} as a sha."
+        
           /** Selectors are a core concept in the DSL. They allow the user to invoke operations **/
     /** on group of objects which satisfy a given criteria. **/
 
