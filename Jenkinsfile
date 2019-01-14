@@ -1,10 +1,14 @@
 #!groovy
 
+@Library('github.com/fabric8io/fabric8-pipeline-library@master') _
+
 println "Hello"
 println "Only purpose is to show how to start a Pipeline in OCP"
 
 openshift.withCluster() {
     openshift.withProject() {
+        
+        println getProjectVersion() 
           /** Selectors are a core concept in the DSL. They allow the user to invoke operations **/
     /** on group of objects which satisfy a given criteria. **/
 
